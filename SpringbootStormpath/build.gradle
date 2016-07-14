@@ -1,0 +1,52 @@
+buildscript {
+    group 'mporium.security'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-actuator-service'
+    version =  '0.1.0'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile(
+   	    "org.springframework.boot:spring-boot-starter-web:1.3.6.RELEASE",
+        "org.springframework.boot:spring-boot-starter-actuator:1.3.6.RELEASE",
+        "com.stormpath.spring:stormpath-default-spring-boot-starter:1.0.RC9.1",
+        "io.springfox:springfox-swagger2:2.5.0",
+        "io.springfox:springfox-bean-validators:2.5.0",
+        "io.springfox:springfox-swagger-ui:2.5.0"
+    )
+    testCompile(
+        "org.springframework.boot:spring-boot-starter-test:1.3.6.RELEASE",
+        "junit:junit"
+    )
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+bootRun {
+    addResources = true
+}
